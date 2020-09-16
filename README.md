@@ -1,3 +1,6 @@
+# Preview
+![](docs/preview_01.PNG)
+
 # detalhesNaBuscaML
 Extensão que apresenta informações extras de cada anúncio no próprio campo de busca evitando entrar no anúncio. As informações apresentadas são nome do vendedor, reputação, valor do frete, data da entrega (para os tipos PAC e Sedex) e valor total da compra no caso de parcelamento com juros.
 
@@ -8,7 +11,4 @@ A extensão precisa ser configurada com o CEP que o usuário deseja receber o pr
 Em manutenção.
 
 # Funcionalidades disponíveis
-* Visualização do total no caso de parcelamento com juros 
-
-# Preview
-![](docs/preview_01.PNG)
+* Visualização do total no caso de parcelamento com juros
