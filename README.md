@@ -11,4 +11,4 @@ Em manutenção.
 * Visualização do total no caso de parcelamento com juros 
 
 # Preview
-[Preview 1](docs/preview_01.md)
+![Preview 1](docs/preview_01.png)
