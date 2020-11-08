@@ -1,8 +1,8 @@
 {
   "name": "mlfreteextension",
   "version": "1.0.0",
-  "description": "Test",
-  "main": "Resumo.js",
+  "description": "Dev",
+  "main": "index.js",
   "directories": {
     "lib": "lib"
   },
