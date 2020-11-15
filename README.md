@@ -1,6 +1,7 @@
 # Preview
 
 ![](docs/preview_01.PNG)
+![](docs/preview_02.PNG)
 
 # Introdução
 
