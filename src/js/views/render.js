@@ -51,8 +51,6 @@ class Renderizar {
 
         for (let opcao_de_entrega of anuncio.opcoes_de_entrega) {
 
-          console.log ("if", anuncio);
-
           // renderiza o valor total da parcela na tela
           let valor_do_frete = document.createElement("p");
           if (opcao_de_entrega.preco === 0) {
