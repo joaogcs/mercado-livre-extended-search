@@ -17,3 +17,5 @@ Em manutenção.
 # Funcionalidades disponíveis
 
 * Visualização do total no caso de parcelamento com juros
+* Visualização do frete com preço e prazo
+  * Pode ocorrer de um produto possuir opções, por exemplo: Iphone 64gb, 128gb, 256gb. Para cada modelo existe um frete diferente.
