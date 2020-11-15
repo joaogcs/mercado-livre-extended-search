@@ -63,6 +63,8 @@ const url_api_correios_vendedor = "https://api.mercadolibre.com/users/";
     
     //Renderizar tudo na tela12'1
     Renderizar.valor_total_parcelado(lista_de_anuncios);
+    
+    Renderizar.frete_preco(lista_de_anuncios);
 
     console.log ('end');
 
