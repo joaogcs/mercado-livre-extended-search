@@ -1,12 +1,12 @@
-class Anuncio {
+class Item {
   constructor(id) {
     /* constructor*/
     this.id = id;
-    this.titulo = "";
-    this.preco = 0;
-    this.valor_total_parcelado = this.preco;
-    this.vendedor_id = 0;
-    this.quantidade_disponivel = 0;
-    this.opcoes_de_entrega = [];
+    this.title = "";
+    this.price = 0;
+    this.totalPaymentValue = this.price;
+    this.seller_id = 0;
+    this.available_quantity = 0;
+    this.delivery_options = [];
   }
 }

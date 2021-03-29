@@ -1,13 +1,13 @@
-class ConectarComAPI {
-  static buscar_vendedor(id) {}
+class MeliAPI {
+  static searchSellerById(id) {}
 
-  static get_dados_das_entregas(lista_de_anuncios, cep) {
+  static getDelivery(itemList, cep) {
     return new Promise ( (resolve, reject) => {
 
       let ajax_requests = [];
-      $.each(lista_de_anuncios, function (index, anuncio) {
+      $.each(itemList, function (index, item) {
         ajax_requests.push(
-          ConectarComAPI.get_dado_de_uma_entrega(anuncio.id, cep)
+          MeliAPI.getDeliveryByItemId(item.id, cep)
         );
       });
         
@@ -21,10 +21,12 @@ class ConectarComAPI {
     })
   }
 
-  static get_dado_de_uma_entrega(id, cep) {
+  static getDeliveryByItemId(id, cep) {
+    const url = `${config.meliAPI.baseURL}${config.meliAPI.delivery}/${id}${config.meliAPI.address}${cep}`
+
     return $.ajax({
       type: "GET",
-      url: url_api_correios_entrega + id + url_api_correios_cep + cep,
+      url: url,
       dataType: "json",
       error: function (xhr) {
         switch (xhr.status) {
@@ -39,12 +41,12 @@ class ConectarComAPI {
     });
   }
 
-  static get_dados_dos_anuncios(lista_de_anuncios) {
+  static getItems(itemList) {
     return new Promise ( (resolve, reject ) => {
       
       let ajax_requests = [];
-      $.each(lista_de_anuncios, function (index, anuncio) {
-        ajax_requests.push(ConectarComAPI.get_dado_de_um_anuncio(anuncio.id));
+      $.each(itemList, function (index, item) {
+        ajax_requests.push(MeliAPI.getItemById(item.id));
       });
       $.when.apply(this, ajax_requests).done(function (data) {
         const args = Array.from(arguments);
@@ -56,10 +58,12 @@ class ConectarComAPI {
     });
   }
 
-  static get_dado_de_um_anuncio(id) {
+  static getItemById(id) {
+    const url = `${config.meliAPI.baseURL}${config.meliAPI.delivery}/${id}`
+
     return $.ajax({
       type: "GET",
-      url: url_api_correios_entrega + id,
+      url: url,
       dataType: "json",
       error: function (xhr) {
         switch (xhr.status) {
@@ -74,13 +78,13 @@ class ConectarComAPI {
     });
   }
 
-  static get_dados_dos_vendedores(lista_de_anuncios) {
+  static getSellers(itemList) {
     return new Promise ( (resolve, reject ) => {
     
       let ajax_requests = [];
-      $.each(lista_de_anuncios, function (index, anuncio) {
+      $.each(itemList, function (index, item) {
         ajax_requests.push(
-          ConectarComAPI.get_dado_de_um_vendedor(anuncio.vendedor_id)
+          MeliAPI.getSellerById(item.seller_id)
         );
       });
       $.when.apply(this, ajax_requests).done(function (data) {
@@ -93,10 +97,12 @@ class ConectarComAPI {
     });
   }
 
-  static get_dado_de_um_vendedor(id) {
+  static getSellerById(id) {
+    const url = `${config.meliAPI.baseURL}${config.meliAPI.seller}/${id}`
+
     return $.ajax({
       type: "GET",
-      url: url_api_correios_vendedor + id,
+      url: url,
       dataType: "json",
       error: function (xhr) {
         switch (xhr.status) {

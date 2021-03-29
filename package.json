@@ -1,20 +1,20 @@
 {
-  "name": "detalhesNaBuscaML",
+  "name": "mercado-livre-extended-search",
   "version": "1.0.0",
-  "description": "![](docs/preview_01.PNG)",
-  "main": "/src/js/controllers/app.js",
+  "description": "Used to extend search info in mercadolivre.com.br website by injecting elements containing more information about the products",
+  "main": "/src/js/app/index.js",
   "directories": {
     "doc": "docs"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/joaogcs/detalhesNaBuscaML.git"
+    "url": "git+https://github.com/joaogcs/mercado-livre-extended-search.git"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "joaogcs",
+  "license": "MIT",
   "bugs": {
-    "url": "https://github.com/joaogcs/detalhesNaBuscaML/issues"
+    "url": "https://github.com/joaogcs/mercado-livre-extended-search/issues"
   },
-  "homepage": "https://github.com/joaogcs/detalhesNaBuscaML#readme"
+  "homepage": "https://github.com/joaogcs/mercado-livre-extended-search#readme"
 }

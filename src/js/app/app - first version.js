@@ -103,13 +103,13 @@ function restore_options() {
 	);
 }
 
-class Anuncio {
-	constructor(id, valor_total_parcelado) {
+class Item {
+	constructor(id, totalPaymentValue) {
 		/* constructor*/
 		this.id = id;
 		// this.titulo = titulo;
 		// this.valor = valor;
-		this.valor_total_parcelado = 0;
+		this.totalPaymentValue = 0;
 
 		// this.nome_do_vendedor = "";
 		// this.reputacao_do_vendedor = 0;
@@ -117,28 +117,28 @@ class Anuncio {
 	}
 }
 
-class Renderizar {
-	static valor_total_parcelado(lista_de_anuncios) {
-		// Para cada anuncio
+class Render {
+	static totalPaymentValue(itemList) {
+		// Para cada item
 		$('.ui-search-layout > .ui-search-layout__item').each( () => {
 			
 			id = $(this).find('input[name=itemId]').val();
 
-			let anuncio = lista_de_anuncios.find(anuncio => anuncio.id === id);
+			let item = itemList.find(item => item.id === id);
 			
-			if (anuncio && $(this).find('span.ui-search-item__group__element.ui-search-installments.ui-search-color--BLACK').length) {
+			if (item && $(this).find('span.ui-search-item__group__element.ui-search-installments.ui-search-color--BLACK').length) {
 				// renderiza o valor total da parcela na tela
-				let valor_total_parcelado = document.createElement('span');
-				valor_total_parcelado.className = "price-tag-symbol"
-				valor_total_parcelado.innerHTML = ' = ' + valor_total;
-				$(this).find('.ui-search-item__group__element.ui-search-installments.ui-search-color--BLACK').find('.price-tag.ui-search-price__part').after(valor_total_parcelado);
+				let totalPaymentValue = document.createElement('span');
+				totalPaymentValue.className = "price-tag-symbol"
+				totalPaymentValue.innerHTML = ' = ' + totalValue;
+				$(this).find('.ui-search-item__group__element.ui-search-installments.ui-search-color--BLACK').find('.price-tag.ui-search-price__part').after(totalPaymentValue);
 			}
 		});
 	}
 }
 
 class Pagina {
-	static se_existe_anuncio() {
+	static hasItems() {
 		if ($('.ui-search-layout > .ui-search-layout__item').length) {
 			return true;
 		} else { return false; }
@@ -146,9 +146,9 @@ class Pagina {
 
 	static get_informacao_dos_anuncios() {
 		
-		let lista_de_anuncios = [];
+		let itemList = [];
 
-		// Para cada anuncio
+		// Para cada item
 		$('.ui-search-layout > .ui-search-layout__item').each( () => {
 			
 			// let price__fraction = $(this).find('.ui-search-price.ui-search-price--size-medium.ui-search-item__group__element > span.price-tag-fraction').text();
@@ -167,40 +167,40 @@ class Pagina {
 	
 			if ($(this).find('span.ui-search-item__group__element.ui-search-installments.ui-search-color--BLACK').length) {
 				//pega o valor da parcela mostrado na tela
-				let valor_parcela = (parseFloat(
+				let installmentValue = (parseFloat(
 					$(this).find('.ui-search-item__group__element.ui-search-installments.ui-search-color--BLACK').find('span.price-tag-fraction').text()
 				) +
 					parseFloat($(this).find('.ui-search-item__group__element.ui-search-installments.ui-search-color--BLACK').find('span.price-tag-cents').text()) / 100).toFixed(2);
 				//pega a quantidade de parcelas mostrado na tela
-				let numero_parcelas = parseInt(
+				let numberOfInstallments = parseInt(
 					$(this).find('.ui-search-item__group__element.ui-search-installments.ui-search-color--BLACK').text().replace('x', '')
 				);
 	
-				let valor_total = (valor_parcela * numero_parcelas).toFixed(2);
+				let totalValue = (installmentValue * numberOfInstallments).toFixed(2);
 
-				let anuncio = new Anuncio(id=id, valor_total_parcelado=valor_total);
+				let item = new Item(id=id, totalPaymentValue=totalValue);
 
-				lista_de_anuncios.push(anuncio);
+				itemList.push(item);
 				
 				// renderiza o valor total da parcela na tela
-				let valor_total_parcelado = document.createElement('span');
-				valor_total_parcelado.className = "price-tag-symbol"
-				valor_total_parcelado.innerHTML = ' = ' + valor_total;
-				$(this).find('.ui-search-item__group__element.ui-search-installments.ui-search-color--BLACK').find('.price-tag.ui-search-price__part').after(valor_total_parcelado);
+				let totalPaymentValue = document.createElement('span');
+				totalPaymentValue.className = "price-tag-symbol"
+				totalPaymentValue.innerHTML = ' = ' + totalValue;
+				$(this).find('.ui-search-item__group__element.ui-search-installments.ui-search-color--BLACK').find('.price-tag.ui-search-price__part').after(totalPaymentValue);
 			}	
-			return lista_de_anuncios;
+			return itemList;
 		});
 	}
 }
 
 function main(zip_code) {
 	
-	//Verifica se o existe algum resultado, se não existir retorna
-	if (!Pagina.se_existe_anuncio()) {
+	//Verifica se o existe algum result, se não existir retorna
+	if (!Pagina.hasItems()) {
 		return false;
 	}
 
-	let lista_de_anuncios = [];
+	let itemList = [];
 	
 	//insere a referencia do arquivo CSS
 	var link = document.createElement('link');
@@ -209,9 +209,9 @@ function main(zip_code) {
 	link.type = 'text/css';
 	//document.head.appendChild(link);
 
-	lista_de_anuncios = Pagina.get_informacao_dos_anuncios();
+	itemList = Pagina.get_informacao_dos_anuncios();
 
-	console.log(lista_de_anuncios);
+	console.log(itemList);
 	
 		//faz o get na API do ML
 		$.ajax({
@@ -303,7 +303,7 @@ function main(zip_code) {
 			}.bind(window, current_itemID),
 			success: function(current_itemID, data) {
 				//Só edita os elementos da pagina se a API responder com sucesso
-				//margem do nome do anuncio
+				//margem do nome do item
 				$('.item__title.list-view-item-title').css('margin', '0px');
 				//margem do rating
 				$('.item__reviews').css('margin', '0px');
@@ -378,7 +378,7 @@ function main(zip_code) {
 		i++;
 }
 
-function Produto(id, valor_inteiro, valor_fracionado = 0, opcoes_frete) {
+function Produto(id, integerValue, valor_fracionado = 0, opcoes_frete) {
 	var i = {};
 	this.itemID = id;
 	opcoes_frete.forEach(function(data) {
@@ -399,7 +399,7 @@ function Produto(id, valor_inteiro, valor_fracionado = 0, opcoes_frete) {
 	if (isNaN(valor_fracionado)) {
 		valor_fracionado = 0;
 	}
-	this.preco = (parseInt(valor_inteiro.toString().replace('.', '')) + parseFloat(valor_fracionado / 100)).toFixed(2);
+	this.price = (parseInt(integerValue.toString().replace('.', '')) + parseFloat(valor_fracionado / 100)).toFixed(2);
 
 	this.vendedor = { seller_id: '', nickname: '', reputacao: '', tipoDoUsuario: '' };
 	this.vendas = { completadas: 0, canceladas: 0, pontos: 0, negativas: 0, neutras: 0, positivas: 0 };
@@ -471,12 +471,12 @@ function pullReputation(item_ID) {
 
 		//deixa o valor do produto com inline-block para podermos adicionarmos novos elementos ao lado
 		$('#' + item_ID).find('.item__price ').css('display', 'inline-block');
-		//adiciona o elemento ao lado do preco
+		//adiciona o elemento ao lado do price
 		$('#' + item_ID).find('.item__price ').after(elem_reputation_info);
 
 		//deixa o valor do produto com inline-block para podermos adicionarmos novos elementos ao lado
 		$('#PAD-' + item_ID).find('.item__price ').css('display', 'inline-block');
-		//adiciona o elemento ao lado do preco
+		//adiciona o elemento ao lado do price
 		$('#PAD-' + item_ID).find('.item__price ').after(elem_reputation_info);
 
 		//adiciona o valor do nickname no elemento SPAN de nickname

@@ -4,7 +4,7 @@ function restore_options() {
   return new Promise ( (resolve, reject) => {
     chrome.storage.sync.get(
       {
-        CEP: "09530580",
+        CEP: "04094000",
         RUA: "...",
         BAIRRO: "...",
         CIDADE: "...",
