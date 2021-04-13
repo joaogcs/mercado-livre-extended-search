@@ -96,7 +96,7 @@ To contribute to mercado-livre-extended-search, follow these steps:
 1. Fork this repository.
 2. Create a branch: `git checkout -b development`.
 3. Make your changes and commit them: `git commit -m '<commit_message>'`
-4. Push to the original branch: `git push origin mercado-livre-extended-search/main`
+4. Push to the original branch: `git push origin mercado-livre-extended-search/master`
 5. Create the pull request.
 
 Alternatively see the Github documentation on [creating a pull request](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request).
