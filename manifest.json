@@ -27,7 +27,7 @@
         "/src/js/options/restore_options.js",
         "/src/js/configs/index.js",
         "/src/js/models/item.js",
-        "/src/js/utils/scrapper.js",
+        "/src/js/utils/scraper.js",
         "/src/js/services/meliAPI.js",
         "/src/js/adapters/meli.adapter.js",
         "/src/js/renders/render.js",
